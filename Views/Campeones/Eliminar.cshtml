@@ -1,0 +1,26 @@
+﻿@model PoyectoCRUD_Campeones.Models.Campeones
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="margin-top:30px">
+    <div class="col-sm-12">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h4>ELIMINAR CAMPEON</h4>
+            </div>
+            <div class="panel-body">
+                <div class="alert alert-danger">
+                    ¿Quiere eliminar el campeón: <b>@Html.DisplayTextFor(m => m.Nombres)</b>?
+                </div>
+                <form action="@Url.Action("EliminarCampeon","Campeones")" method="post">
+                    <input type="hidden" class="form-control" name="IdCampeon" value="@Html.DisplayTextFor(m => m.IdCampeon)" />
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <a class="btn btn-warning" href="@Url.Action("Inicio","Campeones")">Volver</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

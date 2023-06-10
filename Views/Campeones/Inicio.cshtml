@@ -12,7 +12,7 @@
                 <h4>LISTA DE CAMPEONES DE LEAGUE OF LEGENDS</h4>
             </div>
             <div class="panel-body">
-                <a class="btn btn-success">Crear Nuevo</a>
+                <a class="btn btn-success" href="@Url.Action("Registrar","Campeones")">Crear Nuevo</a>
                 <hr />
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -34,8 +34,8 @@
                                 <td>@Campeon.Ataque</td>
                                 <td>@Campeon.Daño</td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm">Editar</a>
-                                    <a class="btn btn-danger btn-sm">Eliminar</a>
+                                    <a class="btn btn-primary btn-sm" href="@Url.Action("Editar","Campeones",new { IdCampeon= Campeon.IdCampeon })">Editar</a>
+                                    <a class="btn btn-danger btn-sm" href="@Url.Action("Eliminar","Campeones",new { IdCampeon = Campeon.IdCampeon })">Eliminar</a>
                                 </td>
                             </tr>
                             }

@@ -42,5 +42,79 @@ namespace PoyectoCRUD_Campeones.Controllers
             }
                 return View(olista);
         }
+        public ActionResult Registrar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RegistrarCampeon(Campeones campeon)
+        {
+            using (SqlConnection oconexion = new SqlConnection(conexion))
+            {
+                SqlCommand cmd = new SqlCommand("PA_CREARCAMPEON", oconexion);
+                cmd.Parameters.AddWithValue("Nombre", campeon.Nombres);
+                cmd.Parameters.AddWithValue("Rol", campeon.Rol);
+                cmd.Parameters.AddWithValue("Ataque", campeon.Ataque);
+                cmd.Parameters.AddWithValue("Daño", campeon.Daño);
+                cmd.CommandType = CommandType.StoredProcedure;
+                oconexion.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            return RedirectToAction("Inicio","Campeones");
+        }
+
+        public ActionResult Editar(int? IdCampeon)
+        {
+            if (IdCampeon==null)     
+                return RedirectToAction("Inicio", "Campeones");
+            Campeones campeon = olista.Where(c => c.IdCampeon == IdCampeon).FirstOrDefault();
+            return View(campeon);
+        }
+        public ActionResult Eliminar(int? IdCampeon)
+        {
+            if (IdCampeon == null)
+                return RedirectToAction("Inicio", "Campeones");
+
+
+            Campeones campeon = olista.Where(c => c.IdCampeon == IdCampeon).FirstOrDefault();
+
+            return View(campeon);
+        }
+
+        [HttpPost]
+        public ActionResult EditarCampeon(Campeones campeon)
+        {
+            using (SqlConnection oconexion = new SqlConnection(conexion))
+            {
+                SqlCommand cmd = new SqlCommand("PA_EDITARCAMPEON", oconexion);
+                cmd.Parameters.AddWithValue("IdCampeon", campeon.IdCampeon);
+                cmd.Parameters.AddWithValue("Nombre", campeon.Nombres);
+                cmd.Parameters.AddWithValue("Rol", campeon.Rol);
+                cmd.Parameters.AddWithValue("Ataque", campeon.Ataque);
+                cmd.Parameters.AddWithValue("Daño", campeon.Daño);
+                cmd.CommandType = CommandType.StoredProcedure;
+                oconexion.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            return RedirectToAction("Inicio", "Campeones");
+        }
+
+        [HttpPost]
+        public ActionResult EliminarCampeon(string IdCampeon)
+        {
+            using (SqlConnection oconexion = new SqlConnection(conexion))
+            {
+                SqlCommand cmd = new SqlCommand("PA_ELIMINARCAMPEON", oconexion);
+                cmd.Parameters.AddWithValue("IdCampeon", IdCampeon);              
+                cmd.CommandType = CommandType.StoredProcedure;
+                oconexion.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            return RedirectToAction("Inicio", "Campeones");
+        }
     }
 }

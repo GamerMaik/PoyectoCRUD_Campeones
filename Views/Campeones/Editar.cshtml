@@ -1,0 +1,38 @@
+﻿@model PoyectoCRUD_Campeones.Models.Campeones
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row" style="margin-top:30px">
+    <div class="col-sm-12">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h4>EDITAR CAMPEON</h4>
+            </div>
+            <div class="panel-body">
+                <form action="@Url.Action("EditarCampeon","Campeones")" method="post">
+                    <input type="hidden" class="form-control" name="IdCampeon" value="@Html.DisplayTextFor(m => m.IdCampeon)"/>
+                    <div class="form-group">
+                        <label>Nombres</label>
+                        <input type="text" class="form-control" name="Nombres" value="@Html.DisplayTextFor(m => m.Nombres)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Rol</label>
+                        <input type="text" class="form-control" name="Rol" value="@Html.DisplayTextFor(m => m.Rol)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Ataque</label>
+                        <input type="text" class="form-control" name="Ataque" value="@Html.DisplayTextFor(m => m.Ataque)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Daño</label>
+                        <input type="text" class="form-control" name="Daño" value="@Html.DisplayTextFor(m => m.Daño)" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <a class="btn btn-warning" href="@Url.Action("Inicio","Campeones")">Volver</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
