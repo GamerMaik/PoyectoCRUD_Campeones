@@ -1,0 +1,49 @@
+﻿@model List<PoyectoCRUD_Campeones.Models.Campeones>
+
+@{
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="margin-top:30px">
+    <div class="col-sm-12">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h4>LISTA DE CAMPEONES DE LEAGUE OF LEGENDS</h4>
+            </div>
+            <div class="panel-body">
+                <a class="btn btn-success">Crear Nuevo</a>
+                <hr />
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombres</th>
+                                <th>Rol</th>
+                                <th>Ataque</th>
+                                <th>Daño</th>
+                                <th style="width:150px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (PoyectoCRUD_Campeones.Models.Campeones Campeon in Model)
+                            {
+                            <tr>
+                                <td>@Campeon.Nombres</td>
+                                <td>@Campeon.Rol</td>
+                                <td>@Campeon.Ataque</td>
+                                <td>@Campeon.Daño</td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm">Editar</a>
+                                    <a class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
